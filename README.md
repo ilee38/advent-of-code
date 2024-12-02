@@ -1,2 +1,3 @@
-# advent-of-code
-Advent of Code no LLMs
+# Advent of Code
+
+Advent of Code solutions–no LLMs.
