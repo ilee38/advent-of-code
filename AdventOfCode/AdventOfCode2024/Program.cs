@@ -4,6 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        var day1 = new Day1.Day1();
+        // day1.PartOneRunningTotal();
+        day1.PartTwoSimilarityScore();
     }
 }
