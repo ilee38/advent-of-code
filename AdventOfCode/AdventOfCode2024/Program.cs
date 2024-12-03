@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day2 = new Day2.Day2();
-        day2.PartTwoSingleBadLevel();
+        var day3 = new Day3.Day3();
+        day3.PartOneUncorruptedMul();
 
     }
 }
