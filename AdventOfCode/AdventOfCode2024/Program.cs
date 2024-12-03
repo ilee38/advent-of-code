@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         var day3 = new Day3.Day3();
-        day3.PartOneUncorruptedMul();
+        day3.PartTwoConditionedMul();
 
     }
 }
