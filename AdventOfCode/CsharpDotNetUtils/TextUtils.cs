@@ -2,7 +2,7 @@
 
 namespace CsharpDotNetUtils;
 
-public static class Utils
+public static class TextUtils
 {
     public static StreamReader GetStreamReaderFromTextFile(string filePath)
     {
