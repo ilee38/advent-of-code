@@ -6,7 +6,7 @@ public static class TextUtils
 {
     public static StreamReader GetStreamReaderFromTextFile(string filePath)
     {
-        using var streamReader = new StreamReader(filePath);
+        var streamReader = new StreamReader(filePath);
         return streamReader;
     }
 
@@ -20,7 +20,7 @@ public static class TextUtils
     {
         var digitsPattern = new Regex(@"\d+");
         var digits = digitsPattern.Matches(line);
-        
+
         return digits.Select(x => int.Parse(x.Value)).ToList();
     }
 
@@ -28,7 +28,7 @@ public static class TextUtils
     {
         var digitsPattern = new Regex(@"\d+");
         var digits = digitsPattern.Matches(line);
-        
+
         return digits.Select(x => double.Parse(x.Value)).ToList();
     }
 }

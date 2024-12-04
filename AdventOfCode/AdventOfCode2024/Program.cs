@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day3 = new Day3.Day3();
-        day3.PartTwoConditionedMul();
+        var day4 = new Day4.Day4();
+        day4.PartOneXmasSearch();
 
     }
 }
