@@ -9,7 +9,7 @@ public class Day6
 {
     private readonly char OBSTACLE = '#';
     private readonly char VISITED = 'X';
-    private readonly char STARTING_POSITION = '^';
+    private readonly char STARTING_DIRECTION = '^';
     private int _distinctPositionCount = 0;
     private List<char[]> _grid = new();
 
@@ -28,14 +28,14 @@ public class Day6
         {
             for (var j = 0; j < _grid[i].Length; j++)
             {
-                if (_grid[i][j] == STARTING_POSITION)
+                if (_grid[i][j] == STARTING_DIRECTION)
                 {
                     x = j;
                     y = i;
                 }
             }
         }
-        _distinctPositionCount = CountPositionsInPath(x, y, STARTING_POSITION);
+        _distinctPositionCount = CountPositionsInPath(x, y, STARTING_DIRECTION);
         Console.WriteLine($"[Day6/Part1] Visited positions: {_distinctPositionCount}");
     }
 
