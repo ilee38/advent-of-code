@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day4 = new Day4.Day4();
-        day4.PartTwoXslashMasSearch();
+        var day5 = new Day5.Day5();
+        day5.PartTwoMiddleNumberAfterOrdering();
 
     }
 }
