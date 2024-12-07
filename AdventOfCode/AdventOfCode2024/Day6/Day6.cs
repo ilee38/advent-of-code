@@ -11,6 +11,7 @@ public class Day6
     private readonly char VISITED = 'X';
     private readonly char STARTING_DIRECTION = '^';
     private int _distinctPositionCount = 0;
+    private int _possibleObstaclesCount = 0;
     private List<char[]> _grid = new();
 
     public void PartOneDistinctPositions()
@@ -37,6 +38,39 @@ public class Day6
         }
         _distinctPositionCount = CountPositionsInPath(x, y, STARTING_DIRECTION);
         Console.WriteLine($"[Day6/Part1] Visited positions: {_distinctPositionCount}");
+    }
+
+    public void PartTwoPossibleObstaclesForLoop()
+    {
+        using var streamReader = TextUtils.GetStreamReaderFromTextFile(@"Day6/day6-input.txt");
+        while (!streamReader.EndOfStream)
+        {
+            _grid.Add(streamReader.ReadLine().ToCharArray());
+        }
+
+        // go to starting position
+        var x = 0;
+        var y = 0;
+        for (var i = 0; i < _grid.Count; i++)
+        {
+            for (var j = 0; j < _grid[i].Length; j++)
+            {
+                if (_grid[i][j] == STARTING_DIRECTION)
+                {
+                    x = j;
+                    y = i;
+                }
+            }
+        }
+
+        // TODO: Implement obstacle count function. Possible solution via brute force:
+        // 1. place obstacle at each available position, then
+        // 2. let the guard move for n*n times, where n is the length and width of the matrix
+        //    if it finishes (goes off the grid), continue with next position. Otherwise, it
+        //    most likely got stuck in a loop, so increment the obstacle count.
+        // 3. Repeat from step 1 until no more available positions to place obstacles.
+        //_possibleObstaclesCount = CountPossibleObstaclesToMakeLoop(x, y, STARTING_DIRECTION);
+        Console.WriteLine($"[Day6/Part2] Total obstacle positions: {_possibleObstaclesCount}");
     }
 
     private int CountPositionsInPath(int x, int y, char currentDirection)
@@ -68,7 +102,7 @@ public class Day6
                         {
                             _grid[y][x] = VISITED;
                             count++;
-                        }    
+                        }
                         y--;
                     }
                     break;
@@ -80,12 +114,12 @@ public class Day6
                         {
                             _grid[y][x] = VISITED;
                             count++;
-                        }                      
+                        }
                         done = true;
                     }
                     else if (_grid[y][x + 1] == OBSTACLE)
                     {
-                        currentDirection = '|';
+                        currentDirection = 'v';
                     }
                     else
                     {
@@ -93,19 +127,19 @@ public class Day6
                         {
                             _grid[y][x] = VISITED;
                             count++;
-                        }                 
+                        }
                         x++;
                     }
                     break;
                 // Move down if not end of grid or obstacle in front
-                case '|':
+                case 'v':
                     if (y + 1 >= _grid.Count)
                     {
                         if (_grid[y][x] != VISITED)
                         {
                             _grid[y][x] = VISITED;
                             count++;
-                        }                   
+                        }
                         done = true;
                     }
                     else if (_grid[y + 1][x] == OBSTACLE)
@@ -130,7 +164,7 @@ public class Day6
                         {
                             _grid[y][x] = VISITED;
                             count++;
-                        }              
+                        }
                         done = true;
                     }
                     else if (_grid[y][x - 1] == OBSTACLE)
