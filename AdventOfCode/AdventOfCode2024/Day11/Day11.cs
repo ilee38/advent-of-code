@@ -7,17 +7,18 @@ public class Day11
 {
     private readonly Dictionary<double, List<double>> _stones = new();
     private readonly Dictionary<double, List<int>> _stoneCountPerBlink = new();
+    private double _totalRemovedStones = 0;
 
     public void PartOneStones25Blinks()
     {
-        var input = TextUtils.ReadAllTextToString(@"Day11/testinput.txt").Split(" ");
+        var input = TextUtils.ReadAllTextToString(@"Day11/d11input.txt").Split(" ");
 
         // initialize dictionary to hold stones
         foreach (var stone in input)
         {
             var parsedStone = double.Parse(stone);
             _stones.Add(parsedStone, new List<double>{parsedStone});
-            _stoneCountPerBlink.Add(parsedStone, new List<int>{1});
+            _stoneCountPerBlink.Add(parsedStone, new List<int>{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
         }
 
         Blink25Times();
@@ -25,34 +26,36 @@ public class Day11
         Console.WriteLine($"[Day 11 / Part 1] Total stones: {totalStones}");
     }
 
-    // TODO: debug blink function
     private void Blink25Times()
     {
         for (var blink = 0; blink < 25; blink++)
         {
-            foreach (var stone in _stones.Keys)
-            {
-                var stonesPerBlink = _stoneCountPerBlink[stone][blink];
+            foreach (var stoneIndex in _stones.Keys)
+            {   
+                var currentStoneListCount = _stones[stoneIndex].Count;
+                var stonesPerBlink = _stoneCountPerBlink[stoneIndex][blink];
                 for (var i = 0; i < stonesPerBlink; i++)
-                {
-                    var currentStoneList = _stones[stone];
-                    var currentStone = currentStoneList[currentStoneList.Count - (stonesPerBlink - i)];
+                {           
+                    var currentStone = _stones[stoneIndex][currentStoneListCount - (stonesPerBlink - i)];
                     if (currentStone == 0)
                     {
-                        _stones[stone].Add(1);
-                        _stoneCountPerBlink[stone].Add(1);
+                        _stones[stoneIndex].Add(1);
+                        _stoneCountPerBlink[stoneIndex][blink + 1] += 1;
+                        _totalRemovedStones++;               
                     }
                     else if (currentStone.ToString().Length % 2 == 0)
                     {
                         var half = currentStone.ToString().Length / 2;
-                        _stones[stone].Add(int.Parse(currentStone.ToString().Substring(0, half)));
-                        _stones[stone].Add(int.Parse(currentStone.ToString().Substring(half, half)));
-                        _stoneCountPerBlink[stone].Add(2);
+                        _stones[stoneIndex].Add(double.Parse(currentStone.ToString().Substring(0, half)));
+                        _stones[stoneIndex].Add(double.Parse(currentStone.ToString().Substring(half, half)));
+                        _stoneCountPerBlink[stoneIndex][blink + 1] += 2;
+                        _totalRemovedStones++;
                     }
                     else
                     {
-                        _stones[stone].Add(currentStone * 2024);
-                        _stoneCountPerBlink[stone].Add(1);
+                        _stones[stoneIndex].Add(currentStone * 2024);
+                        _stoneCountPerBlink[stoneIndex][blink + 1] += 1;
+                        _totalRemovedStones++;
                     }
                 }
             }
@@ -66,7 +69,7 @@ public class Day11
         {
             runnigTotal += _stones[initialStone].Count;
         }
-        return runnigTotal;
+        return runnigTotal - _totalRemovedStones;
     }
 
 }
