@@ -63,13 +63,7 @@ public class Day6
             }
         }
 
-        // TODO: Implement obstacle count function. Possible solution via brute force:
-        // 1. place obstacle at each available position, then
-        // 2. let the guard move for n*n times, where n is the length and width of the matrix
-        //    if it finishes (goes off the grid), continue with next position. Otherwise, it
-        //    most likely got stuck in a loop, so increment the obstacle count.
-        // 3. Repeat from step 1 until no more available positions to place obstacles.
-        //_possibleObstaclesCount = CountPossibleObstaclesToMakeLoop(x, y, STARTING_DIRECTION);
+        _possibleObstaclesCount = CountPossibleObstaclesToMakeLoop(x, y, STARTING_DIRECTION);
         Console.WriteLine($"[Day6/Part2] Total obstacle positions: {_possibleObstaclesCount}");
     }
 
@@ -184,5 +178,112 @@ public class Day6
             }
         }
         return count;
+    }
+
+    /// <summary>
+    /// Brute-force solution to count all possible single-obstacle placements to create
+    /// a loop for the guard.
+    /// </summary>
+    /// <param name="x">Guard's starting position x-coordinate</param>
+    /// <param name="y">Guard's starting postiion y-coordinate</param>
+    /// <param name="currentDirection"></param>
+    /// <returns>Number of possible single obstacles to create a loop.</returns>
+    private int CountPossibleObstaclesToMakeLoop(int x, int y, char currentDirection)
+    {
+        var obstacleCount = 0;
+
+        for (var i = 0; i < _grid.Count; i++)
+        {
+            for (var j = 0; j < _grid[i].Length; j++)
+            {
+                // Place obstacle if position is free and test for loop
+                if (_grid[i][j] == '.')
+                {
+                    _grid[i][j] = '#';
+                    var loop = TestForLoop(x, y, currentDirection);
+                    obstacleCount = loop ? obstacleCount + 1 : obstacleCount;
+
+                    // Remove obstacle before continuing with new one
+                    _grid[i][j] = '.';
+                }
+            }
+        }
+        return obstacleCount;
+    }
+
+    private bool TestForLoop(int x, int y, char currentDirection)
+    {
+        var loop = true;
+        for (var i = 0; i < (_grid.Count * _grid[0].Length); i++)
+        {
+            switch (currentDirection)
+            {
+                // Move up if not end of grid or obstacle in front
+                case '^':
+                    if (y - 1 < 0)
+                    {
+                        // Went off grid
+                        return false;
+                    }
+                    else if (_grid[y - 1][x] == OBSTACLE)
+                    {
+                        currentDirection = '>';
+                    }
+                    else
+                    {
+                        y--;
+                    }
+                    break;
+                // Move right if not end of grid or obstacle in front
+                case '>':
+                    if (x + 1 >= _grid[x].Length)
+                    {
+                        // Went off grid
+                        return false;
+                    }
+                    else if (_grid[y][x + 1] == OBSTACLE)
+                    {
+                        currentDirection = 'v';
+                    }
+                    else
+                    {
+                        x++;
+                    }
+                    break;
+                // Move down if not end of grid or obstacle in front
+                case 'v':
+                    if (y + 1 >= _grid.Count)
+                    {
+                        // Went off grid
+                        return false;
+                    }
+                    else if (_grid[y + 1][x] == OBSTACLE)
+                    {
+                        currentDirection = '<';
+                    }
+                    else
+                    {
+                        y++;
+                    }
+                    break;
+                // Move left if not end of grid or obstacle in front
+                case '<':
+                    if (x - 1 < 0)
+                    {
+                        // Went off grid
+                        return false;
+                    }
+                    else if (_grid[y][x - 1] == OBSTACLE)
+                    {
+                        currentDirection = '^';
+                    }
+                    else
+                    {
+                        x--;
+                    }
+                    break;
+            }
+        }
+        return loop;
     }
 }
