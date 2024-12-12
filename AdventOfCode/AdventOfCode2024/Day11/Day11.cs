@@ -5,71 +5,62 @@ namespace AdventOfCode2024.Day11;
 
 public class Day11
 {
-    private readonly Dictionary<double, List<double>> _stones = new();
-    private readonly Dictionary<double, List<int>> _stoneCountPerBlink = new();
-    private double _totalRemovedStones = 0;
+    private readonly Queue<double> _stoneQueue = new();
 
     public void PartOneStones25Blinks()
     {
         var input = TextUtils.ReadAllTextToString(@"Day11/d11input.txt").Split(" ");
 
-        // initialize dictionary to hold stones
+        // initialize queue to process stones
         foreach (var stone in input)
         {
-            var parsedStone = double.Parse(stone);
-            _stones.Add(parsedStone, new List<double>{parsedStone});
-            _stoneCountPerBlink.Add(parsedStone, new List<int>{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0});
+             _stoneQueue.Enqueue(double.Parse(stone));
         }
 
-        Blink25Times();
-        var totalStones = CountFinalStones();
-        Console.WriteLine($"[Day 11 / Part 1] Total stones: {totalStones}");
+        BlinkXTimes(25);
+        Console.WriteLine($"[Day 11 / Part 1] Total stones: {_stoneQueue.Count}");
     }
 
-    private void Blink25Times()
+    // TODO: implement efficient solution to part 2 (using caching)
+    public void PartTwoStones75Blinks()
     {
-        for (var blink = 0; blink < 25; blink++)
+        var input = TextUtils.ReadAllTextToString(@"Day11/d11input.txt").Split(" ");
+
+        // initialize queue to process stones
+        foreach (var stone in input)
         {
-            foreach (var stoneIndex in _stones.Keys)
-            {   
-                var currentStoneListCount = _stones[stoneIndex].Count;
-                var stonesPerBlink = _stoneCountPerBlink[stoneIndex][blink];
-                for (var i = 0; i < stonesPerBlink; i++)
-                {           
-                    var currentStone = _stones[stoneIndex][currentStoneListCount - (stonesPerBlink - i)];
-                    if (currentStone == 0)
-                    {
-                        _stones[stoneIndex].Add(1);
-                        _stoneCountPerBlink[stoneIndex][blink + 1] += 1;
-                        _totalRemovedStones++;               
-                    }
-                    else if (currentStone.ToString().Length % 2 == 0)
-                    {
-                        var half = currentStone.ToString().Length / 2;
-                        _stones[stoneIndex].Add(double.Parse(currentStone.ToString().Substring(0, half)));
-                        _stones[stoneIndex].Add(double.Parse(currentStone.ToString().Substring(half, half)));
-                        _stoneCountPerBlink[stoneIndex][blink + 1] += 2;
-                        _totalRemovedStones++;
-                    }
-                    else
-                    {
-                        _stones[stoneIndex].Add(currentStone * 2024);
-                        _stoneCountPerBlink[stoneIndex][blink + 1] += 1;
-                        _totalRemovedStones++;
-                    }
+            _stoneQueue.Enqueue(double.Parse(stone));
+        }
+
+        BlinkXTimes(75);
+        Console.WriteLine($"[Day 11 / Part 2] Total stones: {_stoneQueue.Count}");
+    }
+
+    private void BlinkXTimes(int blinks)
+    {
+        for (var blink = 0; blink < blinks; blink++)
+        {
+            var stonesInCurrentBlink = _stoneQueue.Count;
+            while (stonesInCurrentBlink > 0)
+            {             
+                var currentStone = _stoneQueue.Dequeue();
+                if (currentStone == 0)
+                {
+                    _stoneQueue.Enqueue(1);              
                 }
+                else if (currentStone.ToString().Length % 2 == 0)
+                {
+                    var half = currentStone.ToString().Length / 2;
+                    _stoneQueue.Enqueue(double.Parse(currentStone.ToString().AsSpan(0, half)));
+                    _stoneQueue.Enqueue(double.Parse(currentStone.ToString().AsSpan(half, half)));
+                    
+                }
+                else
+                {
+                    _stoneQueue.Enqueue(currentStone * 2024);
+                }
+                stonesInCurrentBlink--;
             }
         }
     }
-    
-    private Double CountFinalStones()
-    {
-        var runnigTotal = 0;
-        foreach (var initialStone in _stones.Keys)
-        {
-            runnigTotal += _stones[initialStone].Count;
-        }
-        return runnigTotal - _totalRemovedStones;
-    }
-
 }
