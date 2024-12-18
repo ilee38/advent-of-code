@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day6 = new Day6.Day6();
-        day6.PartTwoPossibleObstaclesForLoop();
+        var day17 = new Day17.Day17();
+        day17.PartOneProgramOutput();
     }
 }
