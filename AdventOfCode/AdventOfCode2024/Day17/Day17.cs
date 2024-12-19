@@ -23,7 +23,7 @@ public class Day17
 
             var opCode = program[IP];
             var operand = program[IP + 1];
-            var comboOperandValue = EvaluateOperand(operand);
+            var comboOperandValue = EvaluateComboOperand(operand);
 
             switch (opCode)
             {
@@ -73,7 +73,7 @@ public class Day17
         Console.WriteLine("\n");
     }
 
-    private int EvaluateOperand(int operand)
+    private int EvaluateComboOperand(int operand)
     {
         if (operand == 4)
             return registerA;
