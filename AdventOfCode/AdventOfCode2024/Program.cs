@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day19 = new Day19.Day19();
-        day19.PartOnePossibleTowelDesigns();
+        var day24 = new Day24.Day24();
+        day24.PartOneGatesOutput();
     }
 }
