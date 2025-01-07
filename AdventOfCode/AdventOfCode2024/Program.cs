@@ -4,7 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var day24 = new Day24.Day24();
-        day24.PartOneGatesOutput();
+        var day25 = new Day25.Day25();
+        day25.PartOneCountUniquePairs();
     }
 }
