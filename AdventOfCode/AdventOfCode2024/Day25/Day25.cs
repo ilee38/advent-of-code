@@ -59,6 +59,35 @@ public class Day25
                 }
             }
         }
+
+        TryKeys();
+        Console.WriteLine($"[Day 25/Part 1] Unique key/lock combinations: {uniquePairsCount}");
     }
 
+    private void TryKeys()
+    {
+        bool overlap = false;
+
+        foreach (var _lock in _locks)
+        {
+            foreach (var key in _keys)
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    if (key[i] + _lock[i] > 5)
+                    {
+                        overlap = true;
+                        break;
+                    }
+                }
+
+                if (!overlap)
+                {
+                    uniquePairsCount++;
+                }
+
+                overlap = false;
+            }
+        }
+    }
 }
