@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Advent of Code 2015");
+            var day1 = new Day1.Day1();
+            day1.PartTwoBasement();
         }
     }
 }
