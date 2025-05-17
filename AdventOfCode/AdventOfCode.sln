@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpDotNetUtils", "Csharp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2023", "AdventOfCode2023\AdventOfCode2023.csproj", "{A206599A-AADF-4FCE-9D38-DE0CD3D89697}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2015", "AdventOfCode2015\AdventOfCode2015.csproj", "{6230232F-80A5-46E2-9CD1-7C6457E9C3F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A206599A-AADF-4FCE-9D38-DE0CD3D89697}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A206599A-AADF-4FCE-9D38-DE0CD3D89697}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A206599A-AADF-4FCE-9D38-DE0CD3D89697}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6230232F-80A5-46E2-9CD1-7C6457E9C3F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6230232F-80A5-46E2-9CD1-7C6457E9C3F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6230232F-80A5-46E2-9CD1-7C6457E9C3F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6230232F-80A5-46E2-9CD1-7C6457E9C3F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

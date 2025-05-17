@@ -398,5 +398,9 @@ FodyWeavers.xsd
 *.sln.iml
 .idea/
 
+# MacOS
+.DS_Store
+
 # Don't include text input from Advent of Code
 *.txt
+
