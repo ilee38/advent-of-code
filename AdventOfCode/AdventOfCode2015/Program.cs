@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Day2.Day2.PartTwoTotalLength();
+            Day3.Day3.PartTwoAtLeastOnePresent();
             
         }
     }

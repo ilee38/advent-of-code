@@ -4,12 +4,12 @@ namespace AdventOfCode2015.Day2;
 
 public class Day2
 {
-    private static string filePath = @"Day2/d2-input.txt";
+    private static readonly string FilePath = @"Day2/d2-input.txt";
     
     public void PartOneTotalFootage()
     {
         double totalFootage = 0;
-        var sr = TextUtils.GetStreamReaderFromTextFile(filePath);
+        var sr = TextUtils.GetStreamReaderFromTextFile(FilePath);
 
         while (!sr.EndOfStream)
         {
@@ -32,7 +32,7 @@ public class Day2
     public static void PartTwoTotalLength()
     {
         double totalRibbonLength = 0;
-        var sr = TextUtils.GetStreamReaderFromTextFile(filePath);
+        var sr = TextUtils.GetStreamReaderFromTextFile(FilePath);
 
         while (!sr.EndOfStream)
         {
