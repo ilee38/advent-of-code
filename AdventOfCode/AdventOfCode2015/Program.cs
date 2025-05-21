@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Day3.Day3.PartTwoAtLeastOnePresent();
+            Day4.Day4.PartOneLowestPositiveNumber();
             
         }
     }
