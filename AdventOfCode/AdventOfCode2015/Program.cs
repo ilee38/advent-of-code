@@ -4,8 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Day4.Day4.PartOneLowestPositiveNumber();
-            
+            var day5 = new Day5.Day5();
+            day5.PartTwoNaughtyOrNice();
+
         }
     }
 }
