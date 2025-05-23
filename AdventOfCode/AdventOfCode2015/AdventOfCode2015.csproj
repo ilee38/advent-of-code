@@ -11,4 +11,10 @@
       <ProjectReference Include="..\CsharpDotNetUtils\CsharpDotNetUtils.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Day6\input.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
