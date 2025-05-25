@@ -90,7 +90,8 @@ public class Day7
     {
         var result = 0;
         var expression = circuit[wire];
-        
+       
+        // Check if the expression is only a single signal, e.g. lx -> a
         if (expression.Length == 1)
         {
             return solvedWires[expression[0]];
@@ -103,6 +104,7 @@ public class Day7
                 result = ~(solvedWires[expression[1]]);
                 break;
             case "AND":
+                // The first operand in an AND operation can be a number, e.g. 1 AND el -> em
                 if (int.TryParse(expression[0], out var number))
                 {
                     result = number & solvedWires[expression[2]];
