@@ -6,7 +6,7 @@ public class Day7
 {
     private const string InputFilePath = @"Day7/input.txt";
 
-    public static void PartOne()
+    public static void PartOneAndTwo()
     {
         // initialize wires b and c
         // parse the input file to get the values of all wires (expressions) save them to table
@@ -14,7 +14,7 @@ public class Day7
         var circuit = new Dictionary<string, string[]>();
         var solvedWires = new Dictionary<string, int>()
         {
-            { "b", 1674 },
+            { "b", 46065 }, // Part 1 was = 1674 },
             { "c", 0 }
         };
         
