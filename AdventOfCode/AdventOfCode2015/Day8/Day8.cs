@@ -58,10 +58,9 @@ public class Day8
             charactersOfCode += line.Length;
             
             var characters = line.ToCharArray();
-            // Add required additional characters: 2 double quotes + 2 backslashes
+            // Add required additional characters: 4 double quotes + 2 backslashes
             encodedCharacters += 6;
             
-            // Skip first and last double quotes
             for (var i = 1; i < line.Length - 1; i++)
             {
                 var character = characters[i];
