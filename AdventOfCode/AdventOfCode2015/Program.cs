@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             var day9 = new Day9.Day9();
-            day9.PartOne();
+            day9.PartTwo();
         }
     }
 }
