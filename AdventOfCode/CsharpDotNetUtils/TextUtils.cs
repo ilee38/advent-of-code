@@ -31,4 +31,12 @@ public static class TextUtils
 
         return digits.Select(x => double.Parse(x.Value)).ToList();
     }
+
+    public static List<int> GetIntegersWithSignFromString(string line)
+    {
+        var digitsWithSignPattern = new Regex(@"-?\d+", RegexOptions.Compiled);
+        var digitsWithSign = digitsWithSignPattern.Matches(line);
+        
+        return digitsWithSign.Select(x => int.Parse(x.Value)).ToList();
+    }
 }

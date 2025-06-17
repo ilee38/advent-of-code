@@ -403,4 +403,4 @@ FodyWeavers.xsd
 
 # Don't include text input from Advent of Code
 *.txt
-
+*.json
