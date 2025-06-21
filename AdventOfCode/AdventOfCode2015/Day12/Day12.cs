@@ -18,7 +18,6 @@ public class Day12
 
     public static void PartTwo()
     {
-        var visited = new List<JsonElement>();
         var sum = 0;
         
         using (var jsonInput = JsonDocument.Parse(File.ReadAllText(@"Day12/input.json")))
