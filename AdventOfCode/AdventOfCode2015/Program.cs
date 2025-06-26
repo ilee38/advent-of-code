@@ -4,8 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var day13 = new Day13.Day13();
-            day13.PartOneAndTwo();
+            Day14.Day14.PartOne();
         }
     }
 }
