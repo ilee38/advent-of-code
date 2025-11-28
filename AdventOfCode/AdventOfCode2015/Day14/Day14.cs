@@ -39,7 +39,7 @@ public class Day14
         }
         Console.WriteLine($"Day 14 part one result: {bestDistance}");
     }
-
+    
     public static void PartTwo()
     {
         var reindeerStats = GetReindeerStats(@"Day14/input.txt");
