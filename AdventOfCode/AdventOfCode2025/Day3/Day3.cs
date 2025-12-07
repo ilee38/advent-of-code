@@ -68,4 +68,40 @@ public class Day3
         
         Console.WriteLine($"[Day3 | Part1]: Total Joltage is {totalJoltage}");
     }
+
+    public static void Part2()
+    {
+        long totalJoltage = 0;
+        
+        using (var batteryBanks = TextUtils.GetStreamReaderFromTextFile(@"Day3/input.txt"))
+        {
+            while (!batteryBanks.EndOfStream)
+            {
+                var findK = 12;
+                var currentIdx = 0;
+                var maxBankJoltage = string.Empty;
+                var batteryBank = batteryBanks.ReadLine();
+                var n = batteryBank.Length;
+                
+                while (findK > 0)
+                {
+                    var bestBattery = 0;
+                    for (var i = currentIdx; i < (n - findK) + 1; i++)
+                    {
+                        var battery = int.Parse(batteryBank[i].ToString());
+                        if (battery > bestBattery)
+                        {
+                            bestBattery = battery;
+                            currentIdx = i;
+                        }
+                    }
+                    maxBankJoltage += bestBattery;
+                    currentIdx += 1;
+                    findK -= 1;
+                }
+                totalJoltage += long.Parse(maxBankJoltage);
+            }
+            Console.WriteLine($"[Day3 | Part2]: Total Joltage is {totalJoltage}");
+        }
+    }
 }
